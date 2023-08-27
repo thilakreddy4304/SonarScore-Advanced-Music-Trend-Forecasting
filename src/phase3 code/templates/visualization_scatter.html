@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualizations</title>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src={{ url_for("static", filename="app.js") }}></script>
+
+    <script type="text/javascript">
+        let dance_pairs = {{ danceability | list }};
+        let energy_pairs = {{ energy | list }};
+        let liveness_pairs = {{ liveness | list }};
+        let loudness_pairs = {{ loudness | list }};
+        let speechiness_pairs = {{ speechiness | list }};
+        let instrumentalness_pairs = {{ instrumentalness | list }};
+
+        google.charts.load("current", {packages:["scatter"]});
+            google.charts.setOnLoadCallback(function () {
+                showDancepairsChart();
+                showEnergypairsChart();
+                showLivenesspairsChart();
+                showLoudnesspairsChart();
+                showSpeechinesspairsChart();
+                showInstrumentalnesspairsChart();
+                showTableChart();
+            });
+    </script>
+
+    <style>
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            float: left;
+        }
+
+        nav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav li a:hover {
+            background-color: #111;
+        }
+
+        tr {
+            width: 100%;
+            display: table;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+        td {
+            width: 50%;
+            display: table-cell;
+            border: 1px solid #ccc;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Scatter Plots</a></li>
+        <li><a href="/visualization_table">Table Data</a></li>
+    </ul>
+</nav>
+
+<table class="columns">
+    <tr>
+        <td>
+            <div id="chart1"></div>
+        </td>
+
+        <td>
+            <div id="chart2"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="chart3"></div>
+        </td>
+
+        <td>
+            <div id="chart4"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="chart5"></div>
+        </td>
+
+        <td>
+            <div id="chart6"></div>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
